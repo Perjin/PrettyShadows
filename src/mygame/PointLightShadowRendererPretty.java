@@ -9,9 +9,6 @@ package mygame;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.Vector4f;
-import com.jme3.renderer.Camera;
-import static com.jme3.shadow.PointLightShadowRenderer.CAM_NUMBER;
-import com.jme3.util.TempVars;
 
 /**
  *
@@ -45,16 +42,5 @@ public class PointLightShadowRendererPretty extends com.jme3.shadow.PointLightSh
         
         
     }
-    
-       /**
-     *
-     * @param viewCam
-     * @return 
-     */
-    @Override
-    protected boolean checkCulling(Camera viewCam) {
-        return true;
         
-    }
-    
 }

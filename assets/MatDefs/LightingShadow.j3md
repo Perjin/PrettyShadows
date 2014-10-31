@@ -53,13 +53,13 @@ MaterialDef Phong Lighting {
         Texture2D DiffuseMap
 
         // Normal map
-        Texture2D NormalMap -LINEAR
+        Texture2D NormalMap
 
         // Specular/gloss map
         Texture2D SpecularMap
 
         // Parallax/height map
-        Texture2D ParallaxMap -LINEAR
+        Texture2D ParallaxMap
 
         //Set to true is parallax map is stored in the alpha channel of the normal map
         Boolean PackedNormalParallax   
@@ -71,7 +71,7 @@ MaterialDef Phong Lighting {
         Boolean SteepParallax
 
         // Texture that specifies alpha values
-        Texture2D AlphaMap -LINEAR
+        Texture2D AlphaMap
 
         // Color ramp, will map diffuse and specular values through it.
         Texture2D ColorRamp
@@ -133,7 +133,6 @@ MaterialDef Phong Lighting {
         Int NumberOfBones
         Matrix4Array BoneMatrices
                 
-        Boolean UseInstancing
 
         Vector4 LightColor
     }
@@ -183,7 +182,6 @@ MaterialDef Phong Lighting {
 
             NUM_BONES : NumberOfBones
                         
-            INSTANCING : UseInstancing
         }
     }
 
@@ -203,7 +201,6 @@ MaterialDef Phong Lighting {
             COLOR_MAP : ColorMap
             DISCARD_ALPHA : AlphaDiscardThreshold
             NUM_BONES : NumberOfBones
-            INSTANCING : UseInstancing
         }
 
         ForcedRenderState {
@@ -240,7 +237,6 @@ MaterialDef Phong Lighting {
             PSSM : Splits
             POINTLIGHT : LightViewProjectionMatrix5
             NUM_BONES : NumberOfBones
-            INSTANCING : UseInstancing
 
             LATC : LATC
             VERTEX_COLOR : UseVertexColor
@@ -301,7 +297,6 @@ MaterialDef Phong Lighting {
             PSSM : Splits
             POINTLIGHT : LightViewProjectionMatrix5
             NUM_BONES : NumberOfBones
-            INSTANCING : UseInstancing
         }
 
         ForcedRenderState {
@@ -327,7 +322,6 @@ MaterialDef Phong Lighting {
         Defines {
             DIFFUSEMAP_ALPHA : DiffuseMap
             NUM_BONES : NumberOfBones
-            INSTANCING : UseInstancing
         }
 
     }
@@ -349,7 +343,6 @@ MaterialDef Phong Lighting {
         Defines {
             DIFFUSEMAP_ALPHA : DiffuseMap
             NUM_BONES : NumberOfBones
-            INSTANCING : UseInstancing
         }
 
     }
@@ -401,7 +394,6 @@ MaterialDef Phong Lighting {
             HAS_GLOWCOLOR : GlowColor
 
             NUM_BONES : NumberOfBones
-            INSTANCING : UseInstancing
         }
     }
 

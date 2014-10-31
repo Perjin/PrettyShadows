@@ -1,5 +1,6 @@
 Material My Material : MatDefs/LightingShadow.j3md {
      MaterialParameters {
+        Shininess : 5.0
      }
     AdditionalRenderState {
     }

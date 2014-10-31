@@ -29,6 +29,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        flyCam.setMoveSpeed(20f);
         Node node = new Node("Geometry");
         Spatial geom = box(4,1,4);
         geom.setLocalTranslation(2f, -2f, 0f);
@@ -39,6 +40,9 @@ public class Main extends SimpleApplication {
         sphere.setLocalTranslation(4f, 0f, 0f);
         node.attachChild(sphere);
         PointLight pl = new PointLight();
+        Spatial light1 = sphereLight(.05f);
+        light1.setLocalTranslation(1.5f, 2f, 2f);
+        rootNode.attachChild(light1);
         pl.setPosition(new Vector3f(1.5f, 2f, 2f));
         pl.setRadius(10f);
         pl.setColor(new ColorRGBA(2f, 1f, .5f, 1f));
@@ -54,13 +58,36 @@ public class Main extends SimpleApplication {
 //        PointLightShadowRenderer plsr = new PointLightShadowRenderer(assetManager, 1024);
         plsr.setLight(pl);        
         plsr.setEdgeFilteringMode(EdgeFilteringMode.PCF4);
-        plsr.setShadowZExtend(15);
-        plsr.setShadowZFadeLength(5);
         plsr.setShadowIntensity(1.0f);
-        plsr.setFlushQueues(true);
+        plsr.setFlushQueues(false);
 //        plsr.displayDebug();
         viewPort.addProcessor(plsr);
-        node.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        
+        
+        PointLightShadowRendererPretty plsr2 = new PointLightShadowRendererPretty(assetManager, 1024);
+//        PointLightShadowRenderer plsr = new PointLightShadowRenderer(assetManager, 1024);
+        PointLight pl2 = new PointLight();
+        Spatial light2 = sphereLight(.05f);
+        light2.setLocalTranslation(2.5f, 2f, -2f);
+        rootNode.attachChild(light2);
+        pl2.setPosition(new Vector3f(2.5f, 2f, -2f));
+        pl2.setRadius(10f);
+        pl2.setColor(new ColorRGBA(1f, 2f, .5f, 1f));
+        plsr2.setLight(pl2);        
+        plsr2.setEdgeFilteringMode(EdgeFilteringMode.PCF4);
+        plsr2.setShadowIntensity(1.0f);
+        plsr2.setFlushQueues(true);
+        PointLight pl3 = new PointLight();
+        Spatial light3 = sphereLight(.05f);
+        light3.setLocalTranslation(-1.5f, 1f, 0f);
+        rootNode.attachChild(light3);
+        pl3.setPosition(new Vector3f(-1.5f, 1f, 0f));
+        pl3.setRadius(5f);
+        pl3.setColor(new ColorRGBA(0f, 0f, 1.5f, 1f));
+        rootNode.addLight(pl3);
+//        plsr.displayDebug();
+        viewPort.addProcessor(plsr2);
+       // node.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
 
         
     }
@@ -81,6 +108,15 @@ public class Main extends SimpleApplication {
         Material mat = assetManager.loadMaterial("Materials/LightingShadow.j3m");
         geom.setMaterial(mat);
         geom.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        TangentBinormalGenerator.generate(geom);
+        return geom;
+    }
+    Spatial sphereLight(float r){
+        Sphere b = new Sphere(16,16,r);
+        Geometry geom = new Geometry("Sphere", b);
+        Material mat = assetManager.loadMaterial("Common/Materials/WhiteColor.j3m");
+        geom.setMaterial(mat);
+        geom.setShadowMode(RenderQueue.ShadowMode.Off);
         TangentBinormalGenerator.generate(geom);
         return geom;
     }
